@@ -38,7 +38,7 @@ public class Driver {
         Polynomial p1 = new Polynomial(c1, e1);
         System.out.println("[P1] = " + p1);
         
-        Polynomial p2 = new Polynomial("-9x^4-2x^1+9x^2");
+        Polynomial p2 = new Polynomial("-9x4-2x+9x2");
         System.out.println("[P2] = " + p2);
 
 
@@ -67,8 +67,8 @@ public class Driver {
 
         System.out.println("\n=====================================\n");
         
-        p1 = new Polynomial("2-1x^2");
-        p2 = new Polynomial("2+1x^2");
+        p1 = new Polynomial("2-x2");
+        p2 = new Polynomial("2+x2");
         m = p1.multiply(p2);
         
         System.out.println("[P1] = " + p1);

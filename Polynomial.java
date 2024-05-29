@@ -48,6 +48,11 @@ public class Polynomial {
 
     // Takes string and assigns arrays based on parsing, used in constructor
     private void setPolynomialFromString(String line) {
+        // Edge case, do nothing
+        if (line.length() == 0) return;
+
+        // Correct the first term
+        if (line.charAt(0) != '-') { line = "+" + line; }
 
         // Positive lookahead to keep the sign of term
         String[] terms = line.split("((?=[+-]))");
@@ -57,7 +62,13 @@ public class Polynomial {
 
         // Save coefficient and expoonent for each term
         for (int i = 0; i < terms.length; i++) {
-            String[] term = terms[i].split("x\\^");
+            
+            // Implied coefficient and powers
+            if (terms[i].charAt(1) == 'x') { terms[i] = new StringBuilder(terms[i]).insert(1, "1").toString(); }
+            if (terms[i].charAt(terms[i].length()-1) == 'x') { terms[i] = terms[i] + "1"; }
+
+            // Convert and save the numbers
+            String[] term = terms[i].split("x");
             co[i] = Double.parseDouble(term[0]);
             if (term.length > 1) { ex[i] = Integer.parseInt(term[1]); } else { ex[i] = 0; }
         }
@@ -69,10 +80,9 @@ public class Polynomial {
         this.coeff = co;
         this.exponents = ex;
     }
-
+    
+    // Writes the string equivalent of polynomial to file
     public void saveToFile(String filename) throws IOException {
-
-        // Generate string from the polynomial
         FileWriter fw = new FileWriter(filename);
         fw.write(this.toString());
         fw.close();
@@ -80,7 +90,7 @@ public class Polynomial {
 
     
     public Polynomial add(Polynomial p) {
-        // Edge case
+        // Edge cases
         if (coeff == null) { return p.copy(); }
         if (p.coeff == null) { return this.copy(); }
         
@@ -164,6 +174,7 @@ public class Polynomial {
 
     }
 
+    // Passes the value of x to the function
     public double evaluate(double x) {
         if (coeff == null) { return 0; }
 
@@ -198,22 +209,20 @@ public class Polynomial {
         }
     }
 
+    // Used for sorting
     private static void swapArr(int[] arr, int i1, int i2)    { int t = arr[i1]; arr[i1] = arr[i2]; arr[i2] = t; }
     private static void swapArr(double[] arr, int i1, int i2) { double t = arr[i1]; arr[i1] = arr[i2]; arr[i2] = t; }
 
+    // Calculating integer powers
     private static double pow(double b, int e) {
         double result = 1;
         for (int i = 0; i < e; i++) { result *= b; }
         return result;
     }
 
-    private static boolean doubleEquals(double a, double b) {
-        return Math.abs(a-b) <= ERR;
-    }
+    private static boolean doubleEquals(double a, double b) { return Math.abs(a-b) <= ERR; }
 
-    public boolean hasRoot(double x) {
-        return doubleEquals(evaluate(x), 0d);
-    }
+    public boolean hasRoot(double x) { return doubleEquals(evaluate(x), 0d); }
 
     @Override
     public String toString() {
@@ -225,7 +234,7 @@ public class Polynomial {
             out.append(String.valueOf(coeff[i]));
 
             if (exponents[i] == 0) continue;
-            out.append("x^");
+            out.append("x");
             out.append(String.valueOf(exponents[i]));
         }
         return out.toString();
