@@ -162,55 +162,6 @@ public class Polynomial {
         // Return the repeated sum
         return accPolynomial;
 
-        /*
-
-        // Number of individual terms to add is the product of their lengths
-        int max_length = exponents.length*p.exponents.length;
-
-        // Exponents to work with in unsimplified form
-        double[] big_coeff = new double[max_length];
-        int[] big_exponents = new int[max_length];
-
-        // Perform crude multiplication
-        for (int i = 0; i < exponents.length; i++) {
-            for (int j = 0; j < p.exponents.length; j++) {
-                int index = i*p.exponents.length + j;
-
-                big_exponents[index] = exponents[i] + p.exponents[j];
-                big_coeff[index] = coeff[i] * p.coeff[j];
-            }
-        }
-
-        // Sort the terms by ascending exponent
-        sortTerms(big_coeff, big_exponents);
-
-        // Find what length should be for new arrays (number of unique exponents)
-        int prevExponent = -1; int uniqueCount = 0;
-        for (int i = 0; i < big_exponents.length; i++) {
-            if (big_exponents[i] != prevExponent) { uniqueCount++; prevExponent = big_exponents[i]; }
-        }
-
-        // Final arrays for polynomial
-        double[] nCoeff = new double[uniqueCount];
-        int[] nExponents = new int[uniqueCount];
-        
-        // Collapse the terms to remove duplicates
-        prevExponent = -1; int index = -1;
-        for (int i = 0; i < big_exponents.length; i++) {
-            if (big_exponents[i] != prevExponent) {
-                index++;
-                nExponents[index] = big_exponents[i];
-                nCoeff[index] = big_coeff[i];
-                prevExponent = big_exponents[i];
-            } else {
-                nCoeff[index] += big_coeff[i];
-            }
-        }
-
-        // Return the new polynomial
-        return new Polynomial(nCoeff, nExponents);
-
-        */
     }
 
     public double evaluate(double x) {
