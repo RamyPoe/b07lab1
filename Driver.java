@@ -1,32 +1,5 @@
-import java.util.Arrays;
-
 public class Driver {
     public static void main(String[] args) {
-
-
-        // double[] c1 = {6, -9, 5};
-        // int[] e1 = {0, 2, 3};
-        // // Polynomial p1 = new Polynomial(c1, e1);
-        // Polynomial p1 = new Polynomial("-54.0x^4+81.0x^6-45.0x^7");
-        
-        
-        // double[] c2 = {-2, 9, -9};
-        // int[] e2 = {1, 2, 4};
-        // // Polynomial p2 = new Polynomial(c2, e2);
-        // // Polynomial p2 = new Polynomial("-12.0x^1+54.0x^2+18.0x^3-91.0x^4+45.0x^5");
-
-        // System.out.println(p1);
-        // System.out.println(p2); 
-        // System.out.println();
-
-        // Polynomial m1 = p2.add(p1);
-        // // Polynomial m2 = p1.multiply(p2);
-
-        // System.out.println();
-        // System.out.println(m1);
-        // // System.out.println(m2);
-
-
 
         
         System.out.println("\n=====================================\n");
