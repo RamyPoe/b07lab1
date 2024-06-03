@@ -1,10 +1,13 @@
+import java.io.File;
+
 public class Driver {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         
         System.out.println("\n=====================================\n");
         
-
+        Polynomial zero = new Polynomial();
+        System.out.println("[PZ] " + zero);
         
         double[] c1 = {6, -9, 5};
         int[] e1 = {0, 2, 3};
@@ -13,11 +16,13 @@ public class Driver {
         
         Polynomial p2 = new Polynomial("-9x4-2x+9x2");
         System.out.println("[P2] = " + p2);
-
+        
+        System.out.println("\n[PZ] + [P1] = " + zero.add(p1));
+        System.out.println("[P2] + [PZ] = " + p2.add(zero));
 
 
         Polynomial s = p2.add(p1);
-        System.out.println("[S] = [P1] + [P2] = " + s + "\n");
+        System.out.println("\n[S] = [P1] + [P2] = " + s + "\n");
 
         System.out.println("S(0.1) = " + s.evaluate(0.1));
         if(s.hasRoot(1))
@@ -48,6 +53,9 @@ public class Driver {
         System.out.println("[P2] = " + p2);
         System.out.println();
         System.out.println("[M] = [P1] * [P2] = " + m);
+
+        System.out.println("\n[P2] * [PZ] = " + p2.multiply(zero));
+        System.out.println("[PZ] * [P1] = " + zero.multiply(p1));
         
 
         System.out.println("\n=====================================\n");

@@ -79,6 +79,9 @@ public class Polynomial {
         // Save the terms
         this.coeff = co;
         this.exponents = ex;
+
+        // Edge case zero polynomial
+        if (coeff[0] == 0) { coeff = null; exponents = null; }
     }
     
     // Writes the string equivalent of polynomial to file
@@ -187,6 +190,8 @@ public class Polynomial {
 
     // Returns copy that uses new arrays
     private Polynomial copy() {
+        if (coeff == null) return new Polynomial();
+
         double[] cArr = new double[coeff.length];
         for (int i = 0; i < cArr.length; i++) { cArr[i] = coeff[i]; }
         int[] eArr = new int[exponents.length];
@@ -195,7 +200,7 @@ public class Polynomial {
     }
 
     // Given the two arrays it will sort them by increasing exponent while keeping correspondence
-    private void sortTerms(double[] cArr, int[] eArr) {
+    private static void sortTerms(double[] cArr, int[] eArr) {
         boolean sorted = false;
         while(!sorted) {
             sorted = true;
@@ -226,7 +231,7 @@ public class Polynomial {
 
     @Override
     public String toString() {
-        if (coeff == null) { return ""; }
+        if (coeff == null) { return "0"; }
 
         StringBuilder out = new StringBuilder();
         for (int i = 0; i < exponents.length; i++) {
